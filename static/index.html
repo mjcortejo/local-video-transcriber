@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whisper Clip Transcriber</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <p class="brand">Whisper Clip</p>
+          <button id="new-job" type="button" class="secondary">New project</button>
+        </div>
+        <h2 class="sidebar-title">Projects</h2>
+        <p id="job-list-empty" class="sidebar-empty">No saved downloads yet.</p>
+        <ul id="job-list" class="job-list"></ul>
+      </aside>
+
+      <main class="shell">
+        <header class="header">
+          <h1>Transcribe a YouTube or Facebook clip</h1>
+          <p class="lede">
+            Download a video, drag Twitch-style keep blocks on the timeline, add more
+            blocks to cut multiple gaps, then transcribe with local faster-whisper.
+          </p>
+        </header>
+
+        <section class="form">
+          <label class="field">
+            <span>Video URL</span>
+            <input
+              id="url"
+              name="url"
+              type="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              required
+            />
+          </label>
+
+          <div class="actions">
+            <button id="download" type="button">Download</button>
+            <p id="status" class="status" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="preview" id="preview" hidden>
+          <div class="preview-header">
+            <h2 id="video-title">Preview</h2>
+            <p id="video-meta" class="meta"></p>
+          </div>
+
+          <video id="player" controls preload="metadata"></video>
+
+          <div class="timeline" id="timeline" aria-label="Clip timeline">
+            <div class="timeline-track" id="timeline-track">
+              <div class="timeline-segments" id="timeline-segments"></div>
+              <div class="timeline-playhead" id="playhead"></div>
+            </div>
+            <div class="timeline-labels">
+              <span>0:00</span>
+              <span id="label-duration">0:00</span>
+            </div>
+          </div>
+
+          <div class="clip-summary">
+            <p>
+              Keeping <strong id="summary-count">1</strong> segment(s):
+              <strong id="summary-keep">0:00 - 0:00</strong>
+            </p>
+            <div class="segment-actions">
+              <button type="button" id="add-segment" class="secondary">
+                Add keep block
+              </button>
+              <button type="button" id="cut-playhead" class="secondary">
+                Cut at playhead
+              </button>
+              <button type="button" id="remove-segment" class="secondary">
+                Remove selected
+              </button>
+            </div>
+          </div>
+
+          <div class="row tools-row">
+            <label class="field">
+              <span>Model</span>
+              <select id="model" name="model">
+                <option value="tiny">tiny</option>
+                <option value="base" selected>base</option>
+                <option value="small">small</option>
+                <option value="medium">medium</option>
+              </select>
+            </label>
+            <div class="actions timeline-actions">
+              <button type="button" id="seek-start" class="secondary">
+                Jump to selection
+              </button>
+              <button id="transcribe" type="button">Transcribe clip</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="output" hidden id="output">
+          <div class="output-toolbar">
+            <h2>Transcript</h2>
+            <div class="output-actions">
+              <button type="button" id="copy" class="secondary">Copy</button>
+              <button type="button" id="download-txt" class="secondary">
+                Download .txt
+              </button>
+              <button type="button" id="download-srt" class="secondary">
+                Download .srt
+              </button>
+            </div>
+          </div>
+          <p id="meta" class="meta"></p>
+          <textarea id="transcript" readonly rows="14"></textarea>
+        </section>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
