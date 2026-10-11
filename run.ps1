@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Start Whisper Clip (API + web UI) in a psmux session.
+  Start Local Video Transcriber (API + web UI) in a psmux session.
 
 .DESCRIPTION
   Ensures psmux is installed (winget), creates/attaches a multiplexer session with:
@@ -110,7 +110,7 @@ $uiCmd = @(
   "Write-Host 'Server is up. Opening browser...' -ForegroundColor Green"
   "Start-Process '$Url'"
   "Write-Host ''"
-  "Write-Host 'Whisper Clip is running.'"
+  "Write-Host 'Local Video Transcriber is running.'"
   "Write-Host '  UI/API : $Url'"
   "Write-Host '  Server : top pane (Ctrl+b then arrow keys to switch)'"
   "Write-Host '  Detach : Ctrl+b then d'"

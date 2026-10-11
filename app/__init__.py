@@ -1,1 +1,1 @@
-"""Local Whisper Clip Transcriber."""
+"""Local Video Transcriber."""

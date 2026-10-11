@@ -110,7 +110,7 @@ async def lifespan(_app: FastAPI):
     _model_cache.clear()
 
 
-app = FastAPI(title="Local Whisper Clip Transcriber", lifespan=lifespan)
+app = FastAPI(title="Local Video Transcriber", lifespan=lifespan)
 
 
 @app.get("/api/health")

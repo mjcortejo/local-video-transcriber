@@ -1,4 +1,4 @@
-# Local Whisper Clip Transcriber
+# Local Video Transcriber
 
 Local web app that downloads a YouTube or Facebook video, trims it with ffmpeg, and transcribes the clip with [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
 
